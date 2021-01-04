@@ -8,28 +8,15 @@
     tools:context=".MainActivity">
 
 
-    <TextView
-        android:id="@+id/tarehe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="364dp"
-        android:text="Today : Monday 4/1/2020"
-        android:textColor="#133157"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="202dp"
-        android:layout_height="79dp"
-        android:layout_marginTop="268dp"
+        android:id="@+id/img"
+        android:layout_width="298dp"
+        android:layout_height="114dp"
+        android:layout_marginTop="308dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/w" />
+        app:srcCompat="@drawable/wakala" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

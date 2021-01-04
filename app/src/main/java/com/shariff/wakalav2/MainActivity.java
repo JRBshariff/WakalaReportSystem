@@ -7,10 +7,15 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +26,8 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
     public static final int requestCode = 123;
     TextView tv_date;
+    Animation left;
+    ImageView img;
 
 
     @Override
@@ -28,12 +35,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
-        tv_date=findViewById(R.id.tarehe);
         checkPermission( Manifest.permission.RECEIVE_SMS, requestCode);
 
-        SimpleDateFormat formatter = new SimpleDateFormat("EEEE, dd/MM/yyyy ");
-        Date date = new Date();
-        tv_date.setText("Today's Date: "+formatter.format(date));
+        setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
+
+        left = AnimationUtils.loadAnimation(this,R.anim.left_animation);
+        //topAnim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
+        //bottomAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
+        img = (ImageView) findViewById(R.id.img);
+        //sl1 = (TextView)findViewById(R.id.t1);
+        //sl2 = (TextView)findViewById(R.id.t2);
+        img.setAnimation(left);
+        //l1.setAnimation(bottomAnim);
+        //sl2.setAnimation(bottomAnim);
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent in = new Intent(getApplicationContext(),MainActivity2.class);
+                startActivity(in);
+            }
+        }, 3000);
+
     }
 
     // Function to check and request permission
@@ -52,21 +77,9 @@ public class MainActivity extends AppCompatActivity {
                             requestCode);
         }
         else {
-            message("Welcome","Welcome to Wakala Report System! \n Thank You!");
+
         }
     }
 
-    private  void message(String title,String msg){
-        AlertDialog.Builder builder= new AlertDialog.Builder(this);
-        builder.setTitle(title);
-        builder.setMessage(msg);
-        builder.setIcon(R.drawable.w);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
 
-            }
-        });
-        builder.create().show();
-    }
 }
